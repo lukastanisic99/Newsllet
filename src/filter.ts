@@ -1,5 +1,3 @@
-import Observer from "./observer";
-import Domain from "./models/domain";
 import axios from "axios"
 class Regex{
     regex:RegExp;
@@ -16,13 +14,14 @@ class Filter {
 
     public addPattern(pattern:string){
         let r = new Regex(pattern);
+        this.regexs.push(r);
     }
     
     public addPatterns(patterns:string[]){
         for(let p of patterns)this.addPattern(p);
     }
 
-    //Any jer rssItem nije uvek istog formata
+    //Type any - jer rssItem nije uvek istog formata
     /*
     Asumtion - each rssItem at least has the following fields:
     title : string
@@ -36,10 +35,12 @@ class Filter {
             for(let r of this.regexs){
                 if(r.regex.test(rssItem["title"])){
                     match=true;
+                    console.log("Match title",rssItem);
                     break;
                 }
                 if(r.regex.test(rssItem["description"])){
                     match=true;
+                    console.log("Match description",rssItem);
                     break;
                 }
             }
@@ -51,6 +52,7 @@ class Filter {
             let html:string = (await axios.get(rssItem["link"])).data;
             for(let r of this.regexs){
                 if(r.regex.test(html)){
+                    console.log("Match html",rssItem);
                     match=true;
                     break;
                 }
