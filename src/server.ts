@@ -5,6 +5,7 @@ import mongoose, { Types } from 'mongoose'
 import restRouter from './routers/rest.routes';
 import Controller from './controller';
 import Filter from './filter';
+import ConcurrentRegex from './concurrentRegex';
 
 const connectionString:string = "mongodb://localhost:27017/Newsllet";
 const app = express();
@@ -28,6 +29,21 @@ app.listen(4000, () => console.log(`Express server running on port 4000`));
 
 let c = new Controller();
 c.init();
+
+// let main =async ()=>{
+//     try{
+//         let c:ConcurrentRegex = new ConcurrentRegex();
+//         await c.test("haha");
+//     }
+//     catch(e){
+//         console.log(e);
+//     }
+//     console.log("eeeee");
+// }
+// main();
+
+
+
 // setTimeout(()=>{
 // c.stopAll();
 // },5000);

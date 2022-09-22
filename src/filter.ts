@@ -1,8 +1,9 @@
 import Axios from "axios"
 import { Types } from "mongoose";
 import MatchDB from "./models/match";
+import ConcurrentRegex from "./concurrentRegex";
 const axios = Axios.create({timeout:10000});
-class Regex{
+export class Regex{
     regex:RegExp;
     pattern:string;
     
@@ -15,6 +16,7 @@ class Regex{
 class Filter {
     private regexs:Regex[]=[];
     private filterId:Types.ObjectId;
+    private cRegex:ConcurrentRegex=new ConcurrentRegex();
     private persistCount:number=0; //used for statistics
     private newCount:number=0;
     private editCount:number=0;
@@ -30,10 +32,12 @@ class Filter {
     public addPattern(pattern:string){
         let r = new Regex(pattern);
         this.regexs.push(r);
+        this.cRegex.addPattern(pattern);
     }
     
     public addPatterns(patterns:string[]){
         for(let p of patterns)this.addPattern(p);
+        this.cRegex.addPatterns(patterns);
     }
 
     //Type any - jer rssItem nije uvek istog formata
@@ -62,17 +66,8 @@ class Filter {
             console.log("Axios start *****",++this.axiotCount)
             let html:string = (await axios.get(rssItem["link"])).data; //TODO - optimize lazy fetching for multi filters
             console.log("Axios end *****",++this.axiotCount2)
-            for(let r of this.regexs){
-                console.log("Before regex");
-                let match:boolean = r.regex.test(html);
-                console.log("After regex");
-                if(match){
-                    // console.log("Match html",rssItem);
-                    await this.persistItem(rssItem,50);
-                    return
-                }
-            }
-            
+            if(await this.cRegex.test(html))
+                await this.persistItem(rssItem,50);
         }
         catch(e){
             console.log("Filter error ************** ",e); 
