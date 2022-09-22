@@ -24,22 +24,26 @@ class Controller {
             }
         ])
         for(let f of filters){
-            let filter = new Filter();
+            console.log("FOR CONTROLLER FILTERS");
+            let filter = new Filter(f._id);
             filter.addPatterns(f.patterns.map(p=>p.pattern));
             this.filters.push(filter);
         }
         //Domains -> Observers
         const domains = await DomainDB.find({});
         for(let domain of domains){
-            let o = new Observer(domain.url,1000);
+            console.log("FOR CONTROLLER OBSERVERS");
+            let o = new Observer(domain.url,60000);
             o.addFilters(this.filters);
             o.start();
             this.observers.push(o);
+            // return; ////////////////////////////////// testing //////////////////////////////////
         }
     }
 
     public stopAll(){
         for(let o of this.observers){
+            console.log("FOR CONTROLLER STOP");
             o.stop();
         }
     }

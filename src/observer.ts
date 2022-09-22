@@ -1,15 +1,18 @@
-import axios from "axios";
+import Axios from "axios";
 import { XMLParser } from "fast-xml-parser";
 import Filter from "./filter";
+import MatchDB from "./models/match";
+const axios = Axios.create({timeout:5000});
 
 class Observer {
     private domainUrl:string;
     private interval: number; //in milliseconds
     private intervalHandle;
     private parser:XMLParser;
-    private lastPublishDate:Date; //when RSS was last updated
     private lastContentDate:Date // the date of the last published article
     private filters:Filter[]=[];
+    /////////////////////////////////////////
+    private collectCount:number=0;
 
     constructor(url:string,interval:number){
         this.domainUrl=url;
@@ -17,31 +20,20 @@ class Observer {
         this.parser = new XMLParser();
     }
 
-    public start():void{
-        this.intervalHandle=setInterval(async ()=>{
-            try{
-                let obj = await this.getContent(this.domainUrl);
-                let date: Date = new Date(obj["rss"].channel.lastBuildDate);
-                if(!this.lastPublishDate || date>this.lastPublishDate){
-                    this.lastPublishDate=date; 
-                    let items = obj["rss"].channel.item;
-                    let maxDate:Date; //used to assign max date to lastContentDate post iteration
-                    for(let item of items){
-                        let itemDate = new Date(item.pubDate);
-                        if(!maxDate)maxDate=itemDate;
-                        if(!this.lastContentDate || itemDate>this.lastContentDate){
-                            this.filtersPushData(item);
-                        }
-                        else break;
-                    }
-                    if(maxDate)this.lastContentDate=maxDate;
-                    console.log(obj);
-                }
-            }
-            catch(e){
-                console.log(e);
-            }
+    public async start():Promise<void>{
+        this.lastContentDate=await this.getLastPostDate();
+        await this.collectData();
+        console.log("AAAAAAAAAAAAA");
+        this.intervalHandle=setInterval(async()=>{
+            console.log("Interval 1 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            await this.collectData()
+            console.log("Interval 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         },this.interval)
+        console.log("BBBBBBBBBBB");
+        let i=0;
+        setInterval(()=>{
+            console.log("#############",i++);
+        },1000)
     }
 
     public async getContent(url:string):Promise<object>{
@@ -78,10 +70,52 @@ class Observer {
         for(let f of filters)this.addFilter(f);
     }
     // item of RSS items - not a fix structure - can be flexible but has to have minimum some fields (check Filter.ts)
-    private filtersPushData(item:any){
+    private async filtersPushData(item:any){
         for(let filter of this.filters){
-            filter.filterData(item);
+           await filter.filterData(item);
         }
+    }
+    private async collectData(){
+        try{
+            console.log("collecting",++this.collectCount);
+            let round = this.collectCount;
+            let obj = await this.getContent(this.domainUrl);
+            let items = obj["rss"].channel.item;
+            let maxDate:Date; //used to assign max date to lastContentDate post iteration
+            for(let item of items){
+                console.log("FOR OBSERVER ITEMS");
+                let itemDate = new Date(item.pubDate);
+                if(!maxDate)maxDate=itemDate;
+                if(!this.lastContentDate || itemDate>this.lastContentDate){
+                    item.domain=this.domainUrl; //extend object
+                    console.log("PUSH ITEM ---------------------- CollectRound:",round);
+                    if(round>1){
+                        console.log("Hmmmm");
+                    }
+                    await this.filtersPushData(item);
+                    console.log("DONE - PUSH ITEM")
+                }
+                else break;
+            }
+            if(maxDate)this.lastContentDate=maxDate;
+            // console.log(obj);
+            console.log("Finished collecting cycle");
+            
+        }
+        catch(e){
+            console.log("Observer error *************",e);
+        }
+    }
+
+    private async getLastPostDate():Promise<Date>{
+        let date = await MatchDB.aggregate([
+            {$match:{"item.domain":this.domainUrl}},
+            {$project:{"date":{$dateFromString:{dateString:"$item.pubDate"}}}},
+            {$sort:{"date":-1}},
+            {$limit:1}
+        ])
+        if(date.length>0)return new Date(date[0].date)
+        return null;
     }
 }
 

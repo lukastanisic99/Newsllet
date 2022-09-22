@@ -1,11 +1,12 @@
-import mongoose from 'mongoose'
+import mongoose, { Types } from 'mongoose'
 
 const Schema = mongoose.Schema;
 
 let Filter = new Schema({
-    patterns: {
-        type: Array
-    }
+    _id:Types.ObjectId,
+    patterns: [{
+        filterid:Types.ObjectId
+    }]
 })
  
 export default mongoose.model('Filter', Filter, 'Filters');
