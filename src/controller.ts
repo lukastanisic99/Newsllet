@@ -2,9 +2,21 @@ import Observer from "./observer";
 import Filter from "./filter";
 import DomainDB from "./models/domain";
 import FilterDB from "./models/filter";
+import PatternDB from "./models/pattern";
+import { Types } from "mongoose";
 class Controller {
     private observers:Observer[]=[];
     private filters:Filter[]=[];
+
+    private static instance:Controller;
+
+    private constructor(){}
+
+    public static getInstance(){
+        if(Controller.instance)return Controller.instance
+        Controller.instance = new Controller();
+        return Controller.instance;
+    }
 
     public async init(){
         //Filters 
@@ -12,7 +24,7 @@ class Controller {
             {
                 $lookup: {
                     from: "Patterns",
-                    localField: "patterns.filterid",
+                    localField: "patterns.patternid",
                     foreignField: "_id",
                     as: "patterns"
                 }
@@ -37,8 +49,22 @@ class Controller {
             o.addFilters(this.filters);
             o.start();
             this.observers.push(o);
-            // return; ////////////////////////////////// testing //////////////////////////////////
         }
+    }
+
+    public addPaternToFilter(pattern:string,filterId:Types.ObjectId){
+        for(let f of this.filters){
+            if(f.getId()==filterId){
+                f.addPattern(pattern);
+            }
+        }
+    }
+
+    public async addFilter(filterId:Types.ObjectId,patternIds:Types.ObjectId[]){
+        let filter = new Filter(filterId);
+        let patterns = await PatternDB.find({_id:{$in:patternIds}});
+        for(let p of patterns)filter.addPattern(p.pattern);
+        for(let o of this.observers)o.addFilter(filter);
     }
 
     public stopAll(){

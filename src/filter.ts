@@ -30,6 +30,7 @@ class Filter {
     }
 
     public addPattern(pattern:string){
+        console.log("PATTERN ADDED :::::::::::::");
         let r = new Regex(pattern);
         this.regexs.push(r);
         this.cRegex.addPattern(pattern);
@@ -40,6 +41,7 @@ class Filter {
         this.cRegex.addPatterns(patterns);
     }
 
+    public getId(){return this.filterId;}
     //Type any - jer rssItem nije uvek istog formata
     /*
     Asumtion - each rssItem at least has the following fields:

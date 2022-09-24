@@ -84,7 +84,7 @@ class ConcurrentRegex {
         }
     }
     private async TerminateAndRespawn(){
-        await this.regexWorker.terminate();//TODO check this -----------------------------
+        await this.regexWorker.terminate();
         this.createWorker();
     }
 

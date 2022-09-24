@@ -27,7 +27,7 @@ app.use('/rest',restRouter);
 app.listen(4000, () => console.log(`Express server running on port 4000`));
 
 
-let c = new Controller();
+let c = Controller.getInstance();
 c.init();
 
 // let main =async ()=>{
