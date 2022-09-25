@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "482c8aa3-020c-4d20-b4d2-45f4e070d562",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:4000/rest/getFilterMatches?filterId=632e5a50a79da438b630c51f",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/rest/getFilterMatches?filterId=632e5a50a79da438b630c51f",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"getFilterMatches"
+					],
+					"query": [
+						{
+							"key": "filterId",
+							"value": "632e5a50a79da438b630c51f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/addFilter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"patternIds\":[\"6329d659d4381eae957bf596\",\"6329d66cd4381eae957bf597\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/rest/addFilter",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"addFilter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/getFilters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/rest/getFilters",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"getFilters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/getFilterPatterns?filterId=6329d740d4381eae957bf59e",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/rest/getFilterPatterns?filterId=6329d740d4381eae957bf59e",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"getFilterPatterns"
+					],
+					"query": [
+						{
+							"key": "filterId",
+							"value": "6329d740d4381eae957bf59e"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/getPatterns",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/rest/getPatterns",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"getPatterns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/addPattern",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pattern\":\"Luka\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/rest/addPattern",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"addPattern"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/rest/hello",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

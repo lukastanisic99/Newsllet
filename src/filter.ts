@@ -2,6 +2,7 @@ import Axios from "axios"
 import { Types } from "mongoose";
 import MatchDB from "./models/match";
 import ConcurrentRegex from "./concurrentRegex";
+import LiveStream from "./liveStream";
 const axios = Axios.create({timeout:10000});
 export class Regex{
     regex:RegExp;
@@ -55,12 +56,12 @@ class Filter {
             for(let r of this.regexs){
                 if(r.regex.test(rssItem["title"])){
                     // console.log("Match title",rssItem);
-                    await this.persistItem(rssItem,100);
+                    await this.acceptItem(rssItem,100);
                     return;
                 }
                 if(r.regex.test(rssItem["description"])){
                     // console.log("Match description",rssItem);
-                    await this.persistItem(rssItem,100);
+                    await this.acceptItem(rssItem,100);
                     return;
                 }
             }
@@ -69,13 +70,17 @@ class Filter {
             let html:string = (await axios.get(rssItem["link"])).data; //TODO - optimize lazy fetching for multi filters
             console.log("Axios end *****",++this.axiotCount2)
             if(await this.cRegex.test(html))
-                await this.persistItem(rssItem,50);
+                await this.acceptItem(rssItem,50);
         }
         catch(e){
             console.log("Filter error ************** ",e); 
         }
     }
-
+    private async acceptItem(rssItem,trustScore:number){
+        console.log(rssItem);
+        LiveStream.getInstance().broadcastData(this.filterId,rssItem);
+        await this.persistItem(rssItem,trustScore);
+    }
     private async persistItem(rssItem,trustScore:number){
         try{
             console.log("Persist item start *****",++this.persistCount)
