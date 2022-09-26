@@ -7,7 +7,7 @@ import { Types } from "mongoose";
 class Controller {
     private observers:Observer[]=[];
     private filters:Filter[]=[];
-
+    private observerInterva:number=60000;
     private static instance:Controller;
 
     private constructor(){}
@@ -45,7 +45,7 @@ class Controller {
         const domains = await DomainDB.find({});
         for(let domain of domains){
             console.log("FOR CONTROLLER OBSERVERS");
-            let o = new Observer(domain.url,60000);
+            let o = new Observer(domain.url,this.observerInterva);
             o.addFilters(this.filters);
             o.start();
             this.observers.push(o);
@@ -54,7 +54,7 @@ class Controller {
 
     public addPaternToFilter(pattern:string,filterId:Types.ObjectId){
         for(let f of this.filters){
-            if(f.getId()==filterId){
+            if(f.getId().toString()==filterId.toString()){
                 f.addPattern(pattern);
             }
         }
@@ -66,7 +66,12 @@ class Controller {
         for(let p of patterns)filter.addPattern(p.pattern);
         for(let o of this.observers)o.addFilter(filter);
     }
-
+    public addDomain(domainURL:string){
+        let o = new Observer(domainURL,this.observerInterva);
+        o.addFilters(this.filters);
+        o.start();
+        this.observers.push(o);
+    }
     public stopAll(){
         for(let o of this.observers){
             console.log("FOR CONTROLLER STOP");

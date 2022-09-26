@@ -4,12 +4,24 @@ import Controller from '../controller';
 import PatternDB from '../models/pattern';
 import FilterDB from '../models/filter';
 import MatchDB from '../models/match';
+import DomainDB from '../models/domain';
 
 const restRouter = express.Router();
 
 restRouter.route('/hello').get((req,res)=>{
     let c = Controller.getInstance();    
     res.send("Hello");
+})
+
+restRouter.route('/addDomain').post((req,res)=>{
+    let domainURL = req.body.domainURL;
+    let domainName = req.body.domainName;
+    Controller.getInstance().addDomain(domainURL);
+    let d = new DomainDB({name:domainName,url:domainURL});
+    d.save()
+    .then(()=>{res.json({message:"OK"})})
+    .catch((e)=>{res.json({error:e})})
+
 })
 
 restRouter.route('/addPattern').post((req,res)=>{
@@ -39,7 +51,7 @@ restRouter.route('/addPatternToFilter').post(async (req,res)=>{
         c.addPaternToFilter(pattern.pattern,filterId);    
         res.json({message:"OK"});
     }catch(e){
-        res.json({message:"Invalid cobination of filterId and patternId"});
+        res.json({message:"Invalid combination of filterId and patternId"});
     }
 })
 
