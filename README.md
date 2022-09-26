@@ -35,7 +35,7 @@ Connect to:
 ```shell
 ws://localhost:4000
 ```
-You subscribe to a given filter by sending the filter through the socket
+You subscribe to a given filter by sending the filterID (mongoDB objectID) through the socket
 Example
 ```shell
 6329d740d4381eae957bf59e
