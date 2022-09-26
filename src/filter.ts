@@ -67,9 +67,12 @@ class Filter {
             }
             //fetch content -> try match -> probability
             console.log("Axios start *****",++this.axiotCount)
-            let html:string = (await axios.get(rssItem["link"])).data; //TODO - optimize lazy fetching for multi filters
+            if(!rssItem["pageContent"])rssItem["pageContent"]=(await axios.get(rssItem["link"])).data; //TODO - optimize lazy fetching for multi filters
+            else {
+                console.log("It works as expected");
+            }
             console.log("Axios end *****",++this.axiotCount2)
-            if(await this.cRegex.test(html))
+            if(await this.cRegex.test(rssItem["pageContent"]))
                 await this.acceptItem(rssItem,50);
         }
         catch(e){
@@ -77,9 +80,11 @@ class Filter {
         }
     }
     private async acceptItem(rssItem,trustScore:number){
-        console.log(rssItem);
-        LiveStream.getInstance().broadcastData(this.filterId,rssItem);
-        await this.persistItem(rssItem,trustScore);
+        let rssItemClone = Object.assign({},rssItem); //This is actually one of the most inefficient parts of the code - it's more efficient to mark "pageContent" and skip persisting it, but keep passing the same object refrence around the code, than to make a copy and remove the property.
+        delete rssItemClone["pageContent"];
+        console.log(rssItemClone);
+        LiveStream.getInstance().broadcastData(this.filterId,rssItemClone);
+        await this.persistItem(rssItemClone,trustScore);
     }
     private async persistItem(rssItem,trustScore:number){
         try{

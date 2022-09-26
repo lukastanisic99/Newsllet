@@ -92,7 +92,7 @@ class Observer {
                     if(round>1){
                         console.log("Hmmmm");
                     }
-                    await this.filtersPushData(item);
+                    await this.filtersPushData(item); // TODO - comment on this await 
                     console.log("DONE - PUSH ITEM")
                 }
                 else break;

@@ -73,7 +73,7 @@ class ConcurrentRegex {
             this.regexWorker = new Worker(workerPath);
             this.regexWorker.postMessage(["ADD_PATTERNS",this.patterns]);
             this.regexWorker.on("message",(data)=>{ //data = [bool,ticket]
-            if(this.queue[0].ticket==data[1]){
+            if(this.queue[0] && this.queue[0].ticket==data[1]){
                 this.queue[0].resolve(data[0]);
                 this.popQueueFront();
                 this.signalWorker();
