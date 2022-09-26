@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "6329d603d4381eae957bf595"
+  },
+  "pattern": ".*((Coinbase)|(Binance)).*list.*"
+},{
+  "_id": {
+    "$oid": "6329d659d4381eae957bf596"
+  },
+  "pattern": ".*((hack)|(exploit)|(vuln))"
+},{
+  "_id": {
+    "$oid": "6329d66cd4381eae957bf597"
+  },
+  "pattern": ".*((Ethereum)|(ETH)).*((fork)|(upgrad)).*"
+}]

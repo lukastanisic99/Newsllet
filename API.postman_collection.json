@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "482c8aa3-020c-4d20-b4d2-45f4e070d562",
+		"_postman_id": "4482ed14-d089-4424-9fd9-b35301e32280",
 		"name": "API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23537362"
 	},
 	"item": [
 		{
@@ -163,6 +164,62 @@
 					"path": [
 						"rest",
 						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/addPattern",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"domainURL\":\"https://dailyhodl.com/feed/\",\r\n    \"domainName\":\"dailyhodl\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/rest/addDomain",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"addDomain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/rest/addPatternToFilter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filterId\":\"6329d740d4381eae957bf59e\",\r\n    \"patternId\":\"6329d659d4381eae957bf596\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/rest/addPatternToFilter",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"rest",
+						"addPatternToFilter"
 					]
 				}
 			},

@@ -11,8 +11,6 @@ class Observer {
     private parser:XMLParser;
     private lastContentDate:Date // the date of the last published article
     private filters:Filter[]=[];
-    /////////////////////////////////////////
-    private collectCount:number=0;
 
     constructor(url:string,interval:number){
         this.domainUrl=url;
@@ -23,17 +21,10 @@ class Observer {
     public async start():Promise<void>{
         this.lastContentDate=await this.getLastPostDate();
         await this.collectData();
-        console.log("AAAAAAAAAAAAA");
         this.intervalHandle=setInterval(async()=>{
-            console.log("Interval 1 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             await this.collectData()
-            console.log("Interval 2 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         },this.interval)
-        console.log("BBBBBBBBBBB");
-        let i=0;
-        setInterval(()=>{
-            console.log("#############",i++);
-        },1000)
+        
     }
 
     public async getContent(url:string):Promise<object>{
@@ -77,29 +68,19 @@ class Observer {
     }
     private async collectData(){
         try{
-            console.log("collecting",++this.collectCount);
-            let round = this.collectCount;
             let obj = await this.getContent(this.domainUrl);
             let items = obj["rss"].channel.item;
             let maxDate:Date; //used to assign max date to lastContentDate post iteration
             for(let item of items){
-                console.log("FOR OBSERVER ITEMS");
                 let itemDate = new Date(item.pubDate);
                 if(!maxDate)maxDate=itemDate;
                 if(!this.lastContentDate || itemDate>this.lastContentDate){
                     item.domain=this.domainUrl; //extend object
-                    console.log("PUSH ITEM ---------------------- CollectRound:",round);
-                    if(round>1){
-                        console.log("Hmmmm");
-                    }
                     await this.filtersPushData(item); // TODO - comment on this await 
-                    console.log("DONE - PUSH ITEM")
                 }
                 else break;
             }
             if(maxDate)this.lastContentDate=maxDate;
-            // console.log(obj);
-            console.log("Finished collecting cycle");
             
         }
         catch(e){

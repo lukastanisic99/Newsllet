@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "6329d740d4381eae957bf59e"
+  },
+  "patterns": [
+    {
+      "patternid": {
+        "$oid": "6329d603d4381eae957bf595"
+      }
+    },
+    {
+      "patternid": {
+        "$oid": "6329d66cd4381eae957bf597"
+      }
+    },
+    {
+      "patternid": {
+        "$oid": "6329d659d4381eae957bf596"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "632e5957aa35c1061ccfd489"
+  },
+  "patterns": [
+    {
+      "patternid": {
+        "$oid": "6329d659d4381eae957bf596"
+      }
+    },
+    {
+      "patternid": {
+        "$oid": "6329d66cd4381eae957bf597"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "632e5a50a79da438b630c51f"
+  },
+  "patterns": [
+    {
+      "patternid": {
+        "$oid": "6329d659d4381eae957bf596"
+      }
+    },
+    {
+      "patternid": {
+        "$oid": "6329d66cd4381eae957bf597"
+      }
+    }
+  ],
+  "__v": 0
+}]

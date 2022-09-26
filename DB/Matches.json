@@ -1,0 +1,190 @@
+[{
+  "_id": {
+    "$oid": "6331b8f4a19d66adff1508b7"
+  },
+  "item": {
+    "title": "Terra Classic Soars as Binance Appeases Crypto’s Lunatics",
+    "link": "https://cryptobriefing.com/terra-classic-soars-binance-appeases-cryptos-lunatics/?utm_source=feed&#038;utm_medium=rss",
+    "dc:creator": "Chris Williams",
+    "pubDate": "Mon, 26 Sep 2022 13:27:52 +0000",
+    "category": [
+      "Markets",
+      "Binance",
+      "Luna Classic",
+      "Terra Classic"
+    ],
+    "guid": "https://cryptobriefing.com/?p=121614",
+    "description": "Binance introduced the trading fee burn after Terra Classic implemented a 1.2% burn tax on all on-chain transactions. Binance to Burn LUNC Trading Fees Months after crashing to almost zero,...",
+    "media:content": "",
+    "domain": "https://cryptobriefing.com/feed/"
+  },
+  "filters": [
+    {
+      "filterid": {
+        "$oid": "6329d740d4381eae957bf59e"
+      },
+      "trustScore": 50
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6331b91ba19d66adff1508ba"
+  },
+  "item": {
+    "title": "Kraken&#8217;s Defiant New CEO Won&#8217;t File With SEC",
+    "link": "https://cryptobriefing.com/krakens-defiant-new-ceo-wont-file-with-sec/?utm_source=feed&#038;utm_medium=rss",
+    "dc:creator": "Mike Dalton",
+    "pubDate": "Fri, 23 Sep 2022 21:21:26 +0000",
+    "category": [
+      "News",
+      "Kraken"
+    ],
+    "guid": "https://cryptobriefing.com/?p=121586",
+    "description": "Kraken&#8217;s incoming CEO says that his exchange has no plans to register with the U.S. SEC. Kraken Doesn&#8217;t List Securities Kraken is resisting SEC overreach. On September 21, Kraken announced...",
+    "media:content": "",
+    "domain": "https://cryptobriefing.com/feed/"
+  },
+  "filters": [
+    {
+      "filterid": {
+        "$oid": "6329d740d4381eae957bf59e"
+      },
+      "trustScore": 50
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6331b92ca19d66adff1508bd"
+  },
+  "item": {
+    "title": "Almost $1M in crypto stolen from vanity address exploit",
+    "link": "https://cointelegraph.com/news/almost-1m-in-crypto-stolen-from-vanity-address-exploit",
+    "media:content": "",
+    "enclosure": "",
+    "pubDate": "Mon, 26 Sep 2022 14:23:37 +0100",
+    "dc:creator": "Cointelegraph By  Ezra Reguerra ",
+    "category": "vanity address",
+    "guid": "https://cointelegraph.com/news/almost-1m-in-crypto-stolen-from-vanity-address-exploit",
+    "description": "<p style=\"float:right; margin:0 0 10px 15px; width:240px;\"><img src=\"https://images.cointelegraph.com/images/840_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjItMDkvMDRiZjAxYzQtYzU5NC00YzU0LWI4MzMtNDQ3NjU1NGViMGFjLmpwZw==.jpg\"></p><p>The hacker stole 732 ETH worth about $950,000 and sent it to the sanctioned Tornado Cash mixer. </p>",
+    "domain": "https://cointelegraph.com/rss"
+  },
+  "filters": [
+    {
+      "filterid": {
+        "$oid": "6329d740d4381eae957bf59e"
+      },
+      "trustScore": 100
+    },
+    {
+      "filterid": {
+        "$oid": "632e5957aa35c1061ccfd489"
+      },
+      "trustScore": 100
+    },
+    {
+      "filterid": {
+        "$oid": "632e5a50a79da438b630c51f"
+      },
+      "trustScore": 100
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6331b92ca19d66adff1508c4"
+  },
+  "item": {
+    "title": "Crypto Has No ‘Undo Button’ Say Researchers Behind New Reversible Ethereum Tokens",
+    "link": "https://decrypt.co/110498/crypto-no-undo-button-say-researchers-behind-new-reversible-ethereum-tokens",
+    "pubDate": "Mon, 26 Sep 2022 10:24:44 +0000",
+    "description": "A new proposal could see victims of crypto theft get their funds back. Still, the industry has doubts about a “reversible” Ethereum token.",
+    "dc:creator": "Sujith Somraaj",
+    "guid": "https://decrypt.co/?p=110498",
+    "enclosure": "",
+    "category": [
+      "ETH",
+      "Technology"
+    ],
+    "media:thumbnail": "",
+    "domain": "https://decrypt.co/feed"
+  },
+  "filters": [
+    {
+      "filterid": {
+        "$oid": "632e5a50a79da438b630c51f"
+      },
+      "trustScore": 50
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6331b92da19d66adff1508c7"
+  },
+  "item": {
+    "title": "Crypto Exchange Binance Eyes Return to Japan 4 Years After Exit: Report",
+    "link": "https://decrypt.co/110496/crypto-exchange-binance-eyes-return-japan-4-years-exit-report",
+    "pubDate": "Mon, 26 Sep 2022 09:32:34 +0000",
+    "description": "The world’s largest crypto exchange Binance will apply for a license this time, as Japan looks set to adopt Web3-friendly policies.",
+    "dc:creator": "Ziwang",
+    "guid": "https://decrypt.co/?p=110496",
+    "enclosure": "",
+    "category": "Business",
+    "media:thumbnail": "",
+    "domain": "https://decrypt.co/feed"
+  },
+  "filters": [
+    {
+      "filterid": {
+        "$oid": "6329d740d4381eae957bf59e"
+      },
+      "trustScore": 50
+    },
+    {
+      "filterid": {
+        "$oid": "632e5957aa35c1061ccfd489"
+      },
+      "trustScore": 50
+    },
+    {
+      "filterid": {
+        "$oid": "632e5a50a79da438b630c51f"
+      },
+      "trustScore": 50
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6331b932a19d66adff1508ce"
+  },
+  "item": {
+    "title": "Institutional crypto custody: How banks are housing digital assets",
+    "link": "https://cointelegraph.com/news/institutional-crypto-custody-how-banks-are-housing-digital-assets",
+    "media:content": "",
+    "enclosure": "",
+    "pubDate": "Mon, 26 Sep 2022 14:01:00 +0100",
+    "dc:creator": "Cointelegraph By   Arunkumar Krishnakumar  ",
+    "category": [
+      "Trading",
+      "Tokens",
+      "Banks",
+      "Markets",
+      "Security"
+    ],
+    "guid": "https://cointelegraph.com/news/institutional-crypto-custody-how-banks-are-housing-digital-assets",
+    "description": "<p style=\"float:right; margin:0 0 10px 15px; width:240px;\"><img src=\"https://images.cointelegraph.com/images/840_aHR0cHM6Ly9zMy5jb2ludGVsZWdyYXBoLmNvbS91cGxvYWRzLzIwMjItMDkvY2JmZDQ2NDAtM2ZlMS00MWY3LWEwNzQtODFjMjYzYmMwOTcwLmpwZw==.jpg\"></p><p>Large financial institutions are getting involved in digital assets by investing capital, time and effort into custody technology solutions.</p>",
+    "domain": "https://cointelegraph.com/rss"
+  },
+  "filters": [
+    {
+      "filterid": {
+        "$oid": "6329d740d4381eae957bf59e"
+      },
+      "trustScore": 50
+    }
+  ],
+  "__v": 0
+}]

@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "632950a9d4381eae957bf592"
+  },
+  "name": "Cryptobriefing",
+  "url": "https://cryptobriefing.com/feed/"
+},{
+  "_id": {
+    "$oid": "632a3559d4381eae957bf5d0"
+  },
+  "name": "Decrypt",
+  "url": "https://decrypt.co/feed"
+},{
+  "_id": {
+    "$oid": "632a35ced4381eae957bf5d1"
+  },
+  "name": "Cointelegraph",
+  "url": "https://cointelegraph.com/rss"
+},{
+  "_id": {
+    "$oid": "6331b1e9abc9aeefce0595fb"
+  },
+  "name": "dailyhodl",
+  "url": "https://dailyhodl.com/feed/",
+  "__v": 0
+}]

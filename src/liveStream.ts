@@ -36,7 +36,6 @@ class LiveStream {
                 catch(e){
                     ws.send("error with provided filterId --- "+e);
                 }
-                console.log(filterId);
             })
             
         })
